@@ -27,6 +27,10 @@ class mydevice(object):
     @staticmethod
     def get():
         return mydevice.__instance.value
+    
+    @staticmethod
+    def device_name():
+        print('device singleton constructed for ',mydevice.__instance.value)
 # ================================================
 
 
