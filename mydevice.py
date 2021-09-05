@@ -18,7 +18,8 @@ class mydevice(object):
     def __init__(self):
         use_cuda = torch.cuda.is_available()
         mydevice.__instance.value = torch.device("cuda" if use_cuda else "cpu")
-
+        print('device singleton constructed for ',mydevice.__instance.value)
+        
     @staticmethod
     def load(x):
         return x.to(mydevice.__instance.value)
