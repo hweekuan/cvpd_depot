@@ -1,3 +1,11 @@
+# written by Lee Hwee Kuan, 31Dec2021
+#
+# the problem with cosine annealing is that the lr oscillates and 
+# at larger lr, it can throw off the optimiser. usually cosine lr 
+# scheduler is use for small enough max lr. added a functionality 
+# that have a decay max lr but operate like a cosine annealing lr scheme.
+
+
 import torch.optim as optim
 
 class DecayCosineAnnealingWarmRestarts:
