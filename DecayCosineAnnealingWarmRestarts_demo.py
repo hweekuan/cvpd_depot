@@ -23,7 +23,7 @@ if __name__=='__main__':
     net = model()
     lr = 1e-2
     step = 500
-    decay = 0.9
+    decay = [0.5,.9,.99]
     minlr = 1e-3
 
     opt = optim.Adam(net.parameters(),lr)
