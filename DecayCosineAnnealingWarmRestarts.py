@@ -11,6 +11,10 @@ import torch.optim as optim
 
 class DecayCosineAnnealingWarmRestarts:
 
+    # optimizer: the optimizer you use for training
+    # step_size: the period of cosine curve - integer number
+    # decay: the list of decay rates for reducing max lr - list of float
+    # minlr: minimum learning rate for optimizer
     def __init__(self,optimizer,step_size,decay,minlr):
 
         self.opt = optimizer
@@ -21,10 +25,11 @@ class DecayCosineAnnealingWarmRestarts:
         self.minlr = minlr
         assert self.minlr>=0,'learning rate cannot be negative'
         self.cntr = 0
+        self.decay_idx = 0
 
         print('#state dict ',self.state_dict())
 
-
+    # update optimizer lr
     def step(self):
 
         self.cntr += 1
@@ -34,7 +39,9 @@ class DecayCosineAnnealingWarmRestarts:
         if self.cntr%self.step_size==0:
             self.cntr = 0
             dlr = self.thrsh-self.minlr
-            self.thrsh = (dlr*self.decay)+self.minlr
+            idx = min(len(self.decay)-1,self.decay_idx)
+            self.thrsh = (dlr*self.decay[idx])+self.minlr
+            self.decay_idx += 1
 
         self.opt.param_groups[0]['lr'] = max(self.minlr,min(cur_lr,self.thrsh))
 
