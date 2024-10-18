@@ -22,14 +22,15 @@ if __name__=='__main__':
 
     net = model()
     lr = 1e-2
-    step = 50
+    step = 500
     decay = 0.9
+    minlr = 1e-3
 
     opt = optim.Adam(net.parameters(),lr)
     #print('opt ',opt)
-    sch = DecayCosineAnnealingWarmRestarts(opt,step,decay)   
+    sch = DecayCosineAnnealingWarmRestarts(opt,step,decay,minlr)   
 
-    for e in range(200):
+    for e in range(2000):
         print(e,' ',opt.param_groups[0]['lr'])
         sch.step()
 
