@@ -11,6 +11,7 @@ do
       mkdir $dirname
       cd $dirname
       ln -s ../dataset.pt .
+      ln -s ../python_src
       cat ../config.tmpl | sed s/@lr@/$lr/g\
                          | sed s/@batch@/$batch/g\
                          | sed s/@nepoch@/$nepoch/g\
