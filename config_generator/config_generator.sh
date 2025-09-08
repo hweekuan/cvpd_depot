@@ -20,7 +20,7 @@ do
       mkdir $dirname     # create the directory
       cd $dirname
       # configure the config file using regular expression
-      cat ../config.tmpl | sed s/@lr@/$lr/g\          
+      cat ../config.tmpl | sed s/@lr@/$lr/g\
                          | sed s/@batch@/$batch/g\
                          | sed s/@nepoch@/$nepoch/g\
                          > config.txt
