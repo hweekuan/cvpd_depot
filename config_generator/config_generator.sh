@@ -27,7 +27,8 @@ do
       ln -s ../python_src .      # symbolic link to link the python source code
       cd python_src/bin/
       # run the python script, output into proper directory
-      python3 py1.py >& ../../$dirname/log  
+      # also use commandline or other means to read in the correct config file
+      python3 py1.py ../../$dirname/config.txt >& ../../$dirname/log  
       cd ../../
       cd ../
     done
